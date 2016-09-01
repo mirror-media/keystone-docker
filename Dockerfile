@@ -2,7 +2,7 @@ FROM node:4.2-slim
 
 RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
 
-ENV REACT_SOURCE /usr/src/react
+ENV REACT_SOURCE /usr/local/src/plate
 WORKDIR $REACT_SOURCE
 
 COPY config.js /config.js 
@@ -23,7 +23,7 @@ RUN buildDeps=' \
     ' \
   && set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
-  && git clone https://github.com/twreporter/plate.git plate \
+  && git clone https://github.com/mirror-media/plate.git plate \
     && cd plate \ 
     && git pull \
     && cp /config.js /gcskeyfile.json . \
