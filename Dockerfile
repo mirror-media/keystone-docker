@@ -30,7 +30,8 @@ RUN buildDeps=' \
     && cp -rf . .. \
     && cd .. \
     && rm -rf plate \ 
-    && npm install 
+    && npm install \
+    && npm install pm2 -g
 
 EXPOSE 3000
 CMD ["pm2", "start", "keystone.js", "--no-daemon"]
