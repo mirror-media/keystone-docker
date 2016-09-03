@@ -33,4 +33,4 @@ RUN buildDeps=' \
     && npm install 
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["pm2", "start", "keystone.js", "--no-daemon"]
