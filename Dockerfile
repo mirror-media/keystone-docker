@@ -3,6 +3,7 @@ FROM node:4.2-slim
 RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
 
 ENV REACT_SOURCE /usr/local/src/plate
+ENV TZ=Asia/Taipei
 WORKDIR $REACT_SOURCE
 
 COPY config.js /config.js 
@@ -32,6 +33,8 @@ RUN buildDeps=' \
     && rm -rf plate \ 
     && npm install \
     && npm install pm2 -g
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 EXPOSE 3000
 CMD ["pm2", "start", "keystone.js", "--no-daemon"]
