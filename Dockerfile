@@ -15,6 +15,7 @@ RUN set -x \
     && apt-get install -y git \
     && apt-get install -y graphicsmagick \
     && apt-get install -y imagemagick \ 
+	&& apt-get install -y node-gyp \
     && rm -rf /var/lib/apt/lists/*
 
 RUN buildDeps=' \
