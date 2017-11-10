@@ -25,7 +25,7 @@ RUN buildDeps=' \
     ' \
   && set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
-  && git clone https://github.com/mirror-media/plate.git plate \
+  && git clone -b dev https://github.com/mirror-media/plate.git plate \
     && cd plate \ 
     && git pull \
     && cp /config.js /gcskeyfile.json . \
