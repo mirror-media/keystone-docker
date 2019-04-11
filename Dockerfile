@@ -9,7 +9,6 @@ WORKDIR $REACT_SOURCE
 COPY config.js /config.js 
 COPY gcskeyfile.json /gcskeyfile.json
 
-RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
 
 RUN set -x \
     && apt-get update \
@@ -20,7 +19,8 @@ RUN set -x \
 	&& apt-get install -y node-gyp \
     && rm -rf /var/lib/apt/lists/*
 
-RUN buildDeps=' \
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list \
+    && buildDeps=' \
         gcc \
         make \
         python \
